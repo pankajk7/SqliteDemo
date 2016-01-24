@@ -26,6 +26,7 @@ public class StudentDetail extends ActionBarActivity implements android.view.Vie
     EditText editTextName;
     EditText editTextEmail;
     EditText editTextAge;
+    EditText newColumnEditText;
     private int _Student_Id=0;
 
     @Override
@@ -40,6 +41,7 @@ public class StudentDetail extends ActionBarActivity implements android.view.Vie
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextAge = (EditText) findViewById(R.id.editTextAge);
+        newColumnEditText = (EditText) findViewById(R.id.editTextNewCoumn);
 
         btnSave.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
@@ -48,7 +50,10 @@ public class StudentDetail extends ActionBarActivity implements android.view.Vie
 
         _Student_Id =0;
         Intent intent = getIntent();
-        _Student_Id =intent.getIntExtra("student_Id", 0);
+        String studentId = intent.getStringExtra("student_Id");
+        if(studentId != null){
+            _Student_Id = Integer.parseInt(studentId);
+        }
         StudentRepo repo = new StudentRepo(this);
         Student student = new Student();
         student = repo.getStudentById(_Student_Id);
@@ -56,6 +61,7 @@ public class StudentDetail extends ActionBarActivity implements android.view.Vie
         editTextAge.setText(String.valueOf(student.age));
         editTextName.setText(student.name);
         editTextEmail.setText(student.email);
+        newColumnEditText.setText(student.newValue);
     }
 
 
@@ -86,6 +92,7 @@ public class StudentDetail extends ActionBarActivity implements android.view.Vie
             student.age= Integer.parseInt(editTextAge.getText().toString());
             student.email=editTextEmail.getText().toString();
             student.name=editTextName.getText().toString();
+            student.newValue = newColumnEditText.getText().toString();
             student.student_ID=_Student_Id;
 
             if (_Student_Id==0){

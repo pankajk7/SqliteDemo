@@ -11,11 +11,13 @@ public class Student {
     public static final String KEY_name = "name";
     public static final String KEY_email = "email";
     public static final String KEY_age = "age";
+    public static final String KEY_NewColumn = "newColumn";
 
     public int student_ID;
     public String name;
     public String email;
     public int age;
+    public String newValue;
 
     public int getAge() {
         return age;

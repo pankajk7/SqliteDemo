@@ -41,6 +41,18 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="29dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="New"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="29dp" />
+
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,6 +87,21 @@
         android:layout_alignStart="@+id/editTextEmail"
         android:layout_alignRight="@+id/editTextEmail"
         android:layout_alignEnd="@+id/editTextEmail" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/editTextNewCoumn"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignLeft="@+id/editTextAge"
+        android:layout_alignStart="@+id/editTextAge"
+        android:layout_alignRight="@+id/editTextAge"
+        android:layout_alignEnd="@+id/editTextAge" />
+
+
+
 
     <Button
         android:layout_width="wrap_content"

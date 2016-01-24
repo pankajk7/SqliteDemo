@@ -32,6 +32,7 @@ public class MainActivity extends ListActivity implements android.view.View.OnCl
     Button btnAdd, btnGetAll;
     ArrayList studentList = new ArrayList();
     TextView student_Id ;
+    ListAdapter adapter;
 
     @Override
     public void onClick(View view) {
@@ -58,26 +59,31 @@ public class MainActivity extends ListActivity implements android.view.View.OnCl
         btnAdd.setOnClickListener(this);
         btnGetAll.setOnClickListener(this);
 
-        StudentRepo repo = new StudentRepo(this);
 
-        ArrayList<HashMap<String, String>> animalList =  repo.getStudentList();
 
         ListView lv = getListView();
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 student_Id = (TextView) view.findViewById(R.id.student_Id);
                 String studentId = student_Id.getText().toString();
-                Intent  objIndent = new Intent(getApplicationContext(),StudentDetail.class);
+                Intent objIndent = new Intent(getApplicationContext(), StudentDetail.class);
                 objIndent.putExtra("student_Id", studentId);
                 startActivity(objIndent);
             }
         });
-        ListAdapter adapter = new SimpleAdapter( MainActivity.this,animalList, R.layout.view_student_entry, new String[] { "id","name"}, new int[] {R.id.student_Id, R.id.student_name});
-        setListAdapter(adapter);
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        StudentRepo repo = new StudentRepo(this);
+
+        ArrayList<HashMap<String, String>> animalList =  repo.getStudentList();
+        adapter = new SimpleAdapter( MainActivity.this,animalList, R.layout.view_student_entry, new String[] { "id","name"}, new int[] {R.id.student_Id, R.id.student_name});
+        setListAdapter(adapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
